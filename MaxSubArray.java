@@ -21,9 +21,9 @@ public class MaxSubArray {
 	 * @param array an array of integers
 	 */
 	public MaxSubArray(int[] array) {
-		int[] newArray = new int[100];
+		int[] newArray = new int[array.length - 3];
 		
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < array.length - 3; i++) {
 			newArray[i] = array[i];
 		}
 		
@@ -211,7 +211,7 @@ public class MaxSubArray {
 			for (int j = 0; j < n; j++) {
 				numbers[j] = random.nextInt(max - min) + min; 
 			}
-			
+		
 			MaxSubArray ms = new MaxSubArray(numbers);
 			
 			long start = System.nanoTime();
@@ -235,7 +235,6 @@ public class MaxSubArray {
 	
 	
 	public static void main(String[] args) throws IOException {
-		testElements(100000);
 		testElements(10000);
 		testElements(5000);
 		testElements(2000);
