@@ -51,7 +51,7 @@ public class MaxSubArray {
 	 * @return An Element object containing the max, arrive, and depart.
 	 */
 	public Element divideAndConquer() {
-		return maxSubArraySum(array, 0, array.length - 1);
+		return maxSubArray(array, 0, array.length - 1);
 	}
 	
 	
@@ -62,13 +62,13 @@ public class MaxSubArray {
 	 * @param end The end index of the subarray.
 	 * @return An Element object containing the max, arrive, and depart.
 	 */
-	private static Element maxSubArraySum(int[] array, int start, int end) {
+	private static Element maxSubArray(int[] array, int start, int end) {
 		if (start == end) return new Element(array[start], start, start);
 		
 		int middle = (start + end) / 2; // Find middle of array
 		
-		Element leftMaxSub = maxSubArraySum(array, start, middle); // Find max subarray of left half
-		Element rightMaxSub = maxSubArraySum(array, middle + 1, end); // Find max subarray of right half
+		Element leftMaxSub = maxSubArray(array, start, middle); // Find max subarray of left half
+		Element rightMaxSub = maxSubArray(array, middle + 1, end); // Find max subarray of right half
 		
 		
 		// Find max subarray middle out
@@ -99,7 +99,7 @@ public class MaxSubArray {
 			}
 		}
 		
-		// Return largest subarray
+		// Return largest subarray of the three leftMaxSub, rightMaxSub, and middle-out
 		Element element = new Element(0, 0, 0);
 		
 		int leftMax = leftMaxSub.getMax();

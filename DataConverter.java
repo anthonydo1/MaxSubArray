@@ -39,16 +39,18 @@ public class DataConverter {
 			if (current.isBlank()) continue;
 			
 			Scanner lineScanner = new Scanner(current);
-			int[] integers = new int[103];
+			int[] integers = new int[103]; // 103 Elements per line
 			int i = 0;
 			
+			// Add elements to array
 			while (lineScanner.hasNextInt()) {
 				integers[i] = lineScanner.nextInt();
 				i++;
 			}
 			lineScanner.close();
-			list.add(integers);
+			list.add(integers); // Add array to ArrayList
 		}
+		
 		sc.close();
 		return list;
 	}
