@@ -8,6 +8,11 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tester for MaxSubArray.
+ * @author Anthony Do
+ *
+ */
 class MaxSubArrayTester {
 	
 	@Test
@@ -17,7 +22,8 @@ class MaxSubArrayTester {
 		
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println("\nArray " + i);
-			MaxSubArray ms = new MaxSubArray(list.get(i));
+			MaxSubArrayTest mst = new MaxSubArrayTest(list.get(i));
+			MaxSubArray ms = mst.getMaxSubArray();
 			
 			long start = System.nanoTime();
 			Element brute = ms.brute();
@@ -31,17 +37,17 @@ class MaxSubArrayTester {
 			Element kadanes = ms.kadanes();
 			System.out.println("Kadane's algorithm took: " + ( System.nanoTime() - start3) + "ns");
 			
-			assertEquals(ms.getActualMax(), brute.getMax());
-			assertEquals(ms.getActualMax(), divideAndConquer.getMax());
-			assertEquals(ms.getActualMax(), kadanes.getMax());
+			assertEquals(mst.getActualMax(), brute.getMax());
+			assertEquals(mst.getActualMax(), divideAndConquer.getMax());
+			assertEquals(mst.getActualMax(), kadanes.getMax());
 			
-			assertEquals(ms.getActualArrive(), brute.getArrive());
-			assertEquals(ms.getActualArrive(), divideAndConquer.getArrive());
-			assertEquals(ms.getActualArrive(), kadanes.getArrive());
+			assertEquals(mst.getActualArrive(), brute.getArrive());
+			assertEquals(mst.getActualArrive(), divideAndConquer.getArrive());
+			assertEquals(mst.getActualArrive(), kadanes.getArrive());
 			
-			assertEquals(ms.getActualDepart(), brute.getDepart());
-			assertEquals(ms.getActualDepart(), divideAndConquer.getDepart());
-			assertEquals(ms.getActualDepart(), kadanes.getDepart());
+			assertEquals(mst.getActualDepart(), brute.getDepart());
+			assertEquals(mst.getActualDepart(), divideAndConquer.getDepart());
+			assertEquals(mst.getActualDepart(), kadanes.getDepart());
 			
 		}
 		

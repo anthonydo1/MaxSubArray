@@ -1,7 +1,5 @@
 package cs146F19.Do.project2;
 
-import java.io.IOException;
-import java.util.Random;
 
 /**
  * Models a MaxSubArray class
@@ -11,9 +9,6 @@ import java.util.Random;
 public class MaxSubArray {
 	
 	private int[] array;
-	private int actualMax;
-	private int actualArrive;
-	private int actualDepart;
 	
 	/**
 	 * Constructs a MaxSubArray object and initalizes
@@ -21,16 +16,7 @@ public class MaxSubArray {
 	 * @param array an array of integers
 	 */
 	public MaxSubArray(int[] array) {
-		int[] newArray = new int[array.length - 3];
-		
-		for (int i = 0; i < array.length - 3; i++) {
-			newArray[i] = array[i];
-		}
-		
-		this.array = newArray;
-		this.actualMax = array[array.length - 3];
-		this.actualArrive = array[array.length - 2];
-		this.actualDepart = array[array.length - 1];
+		this.array = array;
 	}
 	
 	
@@ -163,84 +149,5 @@ public class MaxSubArray {
 		arrive = tempArrive;
 		return new Element(maxSum, arrive, depart);
 	}
-	
-	
-	/**
-	 * Returns the actual max
-	 * @return the actualMax
-	 */
-	public int getActualMax() {
-		return actualMax;
-	}
-	
-	
-	/**
-	 * Return the actual arrive
-	 * @return the actualArrive
-	 */
-	public int getActualArrive() {
-		return actualArrive;
-	}
-	
-	
-	/**
-	 * Returns the actual depart
-	 * @return the actualDepart
-	 */
-	public int getActualDepart() {
-		return actualDepart;
-	}
-	
-	
-	/**
-	 * Tests a random array of size n, numbers -100 to 100.
-	 * @param n The size of the random array of integers.
-	 */
-	public static void testElements(int n) {
-		long bruteTotal = 0;
-		long divideTotal = 0;
-		long kadanesTotal = 0;
-		
-		int max = 100;
-		int min = -100;
-		
-		for (int i = 0; i < 10; i++) {	
-			int[] numbers = new int[n];
-			Random random = new Random();
-			
-			for (int j = 0; j < n; j++) {
-				numbers[j] = random.nextInt(max - min) + min; 
-			}
-		
-			MaxSubArray ms = new MaxSubArray(numbers);
-			
-			long start = System.nanoTime();
-			ms.brute();
-			bruteTotal += System.nanoTime() - start;
-			
-			long start2 = System.nanoTime();
-			ms.divideAndConquer();
-			divideTotal += System.nanoTime() - start2;
-			
-			long start3 = System.nanoTime();
-			ms.kadanes();
-			kadanesTotal += System.nanoTime() - start3;
-		}
-		
-		System.out.println("\nAverage Times for " + n + " elements");
-		System.out.println("Brute Force: " + bruteTotal / 10);
-		System.out.println("Divide and Conquer: " + divideTotal / 10);
-		System.out.println("Kadane's: " + kadanesTotal / 10);
-	}
-	
-	
-	public static void main(String[] args) throws IOException {
-		testElements(10000);
-		testElements(5000);
-		testElements(2000);
-		testElements(1000);
-		testElements(500);
-		testElements(200);
-		testElements(100);
-	}
+
 }
